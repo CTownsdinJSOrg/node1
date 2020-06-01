@@ -20,4 +20,4 @@ jobs:
       - name: trufflehog-actions-scan
         uses: edplato/trufflehog-actions-scan@master
         with:
-          scanArguments: "--regex --entropy=True --max_depth=50 --rules /regexes.json"
+          scanArguments: "--regex --entropy=True --max_depth=50 --rules /regexes.json -x package-lock.json"
