@@ -4,24 +4,20 @@ name: TruffleHog
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
-
+    branches: [master]
 
 jobs:
   TruffleCheck:
     runs-on: ubuntu-latest
 
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    - uses: actions/checkout@master
-    - name: trufflehog-actions-scan
-      uses: edplato/trufflehog-actions-scan@master    
-
-    # Runs a single command using the runners shell
-    - name: Done
-      run: echo "Check is completed."
-
+      - uses: actions/checkout@master
+      - name: trufflehog-actions-scan
+        uses: edplato/trufflehog-actions-scan@master
+        with:
+          scanArguments: "--regex --entropy=True --max_depth=50 --rules /regexes.json"
